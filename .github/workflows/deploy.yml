@@ -14,11 +14,17 @@ jobs:
     container: 
       image: node:16      
     env:
-      MONGODB_CONNECTION_PROTOCOL: mongodb+srv
-      MONGODB_CLUSTER_ADDRESS: cluster0.xxdrwah.mongodb.net
-      MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }} # sduncan359
-      MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }} # 70e7wtbQEmRf82G4
+      MONGODB_CONNECTION_PROTOCOL: mongodb
+      MONGODB_CLUSTER_ADDRESS: mongodb
+      MONGODB_USERNAME: root # sduncan359
+      MONGODB_PASSWORD: example # 70e7wtbQEmRf82G4
       PORT: 8080
+    services:
+      mongodb:
+        image: mongo
+        env: 
+          MONGO_INITDB_ROOT_USERNAME: root
+          MONGO_INITDB_ROOT_PASSWORD: example
     steps:
       - name: Get Code
         uses: actions/checkout@v3
